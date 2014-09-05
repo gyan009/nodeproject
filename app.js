@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 var express = require('express');
 
@@ -10,14 +9,15 @@ var routes = require('./routes');
 var middleware = require('./middleware');
 
 mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/m101JS', function (err) {
-  if (err) throw err;
-  
-  var app = express();
-  middleware(app);
-  routes(app);
+var databaseUrl = 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/nodejs'; // "username:password@example.com/mydb"
+var collections = ["admin", "ZrVUM5jxyvqZ"];
+mongoose.connect(databaseUrl, collections, function (err) {
+    if (err) throw err;
 
-  app.listen(3000, function () {
-    console.log('now listening on http://localhost:3000');
-  })
+    var app = express();
+    middleware(app);
+    routes(app);
+    app.listen(process.env.PORT || 3000, function () {
+        console.log('now listening on http://localhost:3000');
+    })
 })
