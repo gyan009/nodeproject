@@ -9,8 +9,8 @@ var routes = require('./routes');
 var middleware = require('./middleware');
 
 mongoose.set('debug', true);
-var databaseUrl = 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/nodejs'; // "username:password@example.com/mydb"
-var collections = ["admin", "ZrVUM5jxyvqZ"];
+var databaseUrl = 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/gyanprakash2'; // "username:password@example.com/mydb"
+var collections = ["admin", "VmtlGK67M9Xm"];
 mongoose.connect(databaseUrl, collections, function (err) {
     if (err) throw err;
 
